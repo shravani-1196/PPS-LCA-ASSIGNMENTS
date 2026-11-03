@@ -1,1 +1,96 @@
+#include <stdio.h>
 
+int main() 
+{
+    char subject[2][2][30];  
+    int mid[2][2], end[2][2], total[2][2];
+    int i, j;
+
+  
+    printf("Enter the names of 4 subjects :\n");
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++) 
+{
+            printf("Subject %d: ", i * 2 + j + 1);
+            scanf("%s", subject[i][j]);
+        }
+    }
+
+  
+    printf( "Enter MID SEM marks:\n");
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++) 
+{
+            printf("%s: ", subject[i][j]);
+            scanf("%d", &mid[i][j]);
+        }
+    }
+
+  
+    printf("Enter END SEM marks:\n");
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++) 
+{
+            printf("%s: ", subject[i][j]);
+            scanf("%d", &end[i][j]);
+        }
+    }
+
+  
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++) 
+{
+            total[i][j] = mid[i][j] + end[i][j];
+        }
+    }
+
+  
+    printf("Mid Sem Marks Matrix:\n");
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++) 
+{
+            printf("%6d", mid[i][j]);
+    }
+        printf("\n");
+    }
+
+    
+    printf("End Sem Marks Matrix:\n");
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++)
+{
+            printf("%6d", end[i][j]);
+        }
+        printf("\n");
+    }
+
+  
+    printf("Total Marks Matrix (Mid + End):\n");
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++) 
+{
+            printf("%6d", total[i][j]);
+        }
+        printf("\n");
+    }
+
+  
+    printf("Subject-wise Total:\n");
+    for (i = 0; i < 2; i++) 
+{
+        for (j = 0; j < 2; j++) 
+{
+            printf("%-15s : %d + %d = %d\n", subject[i][j],
+                   mid[i][j], end[i][j], total[i][j]);
+        }
+    }
+
+    return 0;
+}
