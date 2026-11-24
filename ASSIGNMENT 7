@@ -32,11 +32,15 @@ int main()
 {
             printf("normal\n");
             normal++;
-        } else if (s[i].value <= s[i].max * 1.1) 
+ } 
+
+else if (s[i].value <= s[i].max * 1.1) 
 {
             printf("warning\n");
             warning++;
-        } else 
+ } 
+
+else 
 {
             printf("anomaly\n");
             anomaly++;
