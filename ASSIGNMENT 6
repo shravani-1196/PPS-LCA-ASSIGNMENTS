@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+unsigned long long factRecursive(int n)
+{
+    if (n <= 1)
+{
+        return 1;
+    }
+    return n * factRecursive(n - 1);
+}
+
+unsigned long long factIterative(int n) 
+{
+    unsigned long long result = 1;
+    for (int i = 2; i <= n; i++)
+{
+        result *= i;
+    }
+    return result;
+}
+
+int main(void)
+{
+    int n;
+
+    printf("Enter a non-negative integer: ");
+    if (scanf("%d", &n) != 1 || n < 0) 
+{
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    if (n > 20) 
+{
+        printf("Number too large: the result overflows unsigned long long (max n is 20).\n");
+        return 1;
+    }
+
+    printf("Factorial of %d (recursive)     = %llu\n", n, factRecursive(n));
+    printf("Factorial of %d (non-recursive) = %llu\n", n, factIterative(n));
+
+    return 0;
+}
