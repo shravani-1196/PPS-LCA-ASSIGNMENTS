@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+struct Sensor
+{
+    int id;
+    float max;
+    float value;
+};
+
+int main() 
+{
+    struct Sensor s[10];
+    int n, i;
+    int normal = 0, warning = 0, anomaly = 0;
+
+    printf("Enter number of sensors (max 10): ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) 
+{
+        printf("Enter sensor id, max limit and reading: ");
+        scanf("%d %f %f", &s[i].id, &s[i].max, &s[i].value);
+    }
+
+    printf("\n--- REPORT ---\n");
+
+    for (i = 0; i < n; i++)
+{
+        printf("Sensor %d: ", s[i].id);
+
+        if (s[i].value <= s[i].max)
+{
+            printf("normal\n");
+            normal++;
+        } else if (s[i].value <= s[i].max * 1.1) 
+{
+            printf("warning\n");
+            warning++;
+        } else 
+{
+            printf("anomaly\n");
+            anomaly++;
+        }
+    }
+
+    printf("\nNormal  : %d\n", normal);
+    printf("Warning : %d\n", warning);
+    printf("Anomaly : %d\n", anomaly);
+    printf("Total abnormal sensors: %d\n", warning + anomaly);
+
+    return 0;
+}
