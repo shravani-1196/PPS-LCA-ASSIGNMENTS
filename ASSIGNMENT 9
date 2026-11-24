@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+struct Record
+{
+    float depth;
+    float pressure;
+    float temp;
+    float battery;
+    int defects;
+};
+
+int main() 
+{
+    struct Record r[10];
+    int n, i;
+    int unsafe = 0, inspect = 0;
+
+    printf("Enter number of records (max 10): ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) 
+{
+        printf("Enter depth, pressure, temp, battery, defects: ");
+        scanf("%f %f %f %f %d", &r[i].depth, &r[i].pressure,
+              &r[i].temp, &r[i].battery, &r[i].defects);
+    }
+
+    printf("\n--- INSPECTION REPORT ---\n");
+
+    for (i = 0; i < n; i++) 
+{
+        printf("Record %d: ", i + 1);
+
+        if (r[i].depth > 300 || r[i].pressure > 35 ||
+            r[i].temp < 0 || r[i].temp > 40 || r[i].battery < 20) 
+{
+            printf("UNSAFE");
+            unsafe++;
+        }
+else 
+{
+            printf("SAFE");
+        }
+
+        if (r[i].defects >= 3)
+{
+            printf(" - inspection required");
+            inspect++;
+        }
+        printf("\n");
+    }
+
+    printf("\nTotal records: %d\n", n);
+    printf("Unsafe records: %d\n", unsafe);
+    printf("Need inspection: %d\n", inspect);
+
+    return 0;
+}
