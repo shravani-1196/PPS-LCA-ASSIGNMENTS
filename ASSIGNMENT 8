@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main()
+{
+    int motor1, motor2;
+    int *p1, *p2;
+    int temp;
+
+    printf("Enter speed of motor 1 (rpm): ");
+    scanf("%d", &motor1);
+    printf("Enter speed of motor 2 (rpm): ");
+    scanf("%d", &motor2);
+
+    p1 = &motor1;
+    p2 = &motor2;
+
+    printf("\n--- BEFORE SWAP ---\n");
+    printf("Motor 1: speed = %d, address = %p\n", *p1, (void *)p1);
+    printf("Motor 2: speed = %d, address = %p\n", *p2, (void *)p2);
+
+    
+    temp = *p1;
+    *p1 = *p2;
+    *p2 = temp;
+
+    printf("\n--- AFTER SWAP ---\n");
+    printf("Motor 1: speed = %d, address = %p\n", *p1, (void *)p1);
+    printf("Motor 2: speed = %d, address = %p\n", *p2, (void *)p2);
+
+
+    printf("\n--- VERIFICATION ---\n");
+    if (motor1 == *p1 && motor2 == *p2) 
+{
+        printf("Pointers and variables agree.\n");
+    }
+    printf("Motor 1 now holds %d, Motor 2 now holds %d\n", motor1, motor2);
+
+    return 0;
+}
