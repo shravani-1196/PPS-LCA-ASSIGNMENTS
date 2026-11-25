@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int isLeapYear(int year)
+{
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+
+int firstDayOfYear(int year)
+{
+    int y = year - 1;
+    return (year + y / 4 - y / 100 + y / 400) % 7;
+}
+
+int main(void)
+{
+    const char *months[] =
+{
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    };
+
+    int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int year, month, day, weekday;
+
+    printf("Enter year: ");
+    if (scanf("%d", &year) != 1 || year < 1 || year > 9999) 
+{
+        printf("Invalid year. Enter a value from 1 to 9999.\n");
+        return 1;
+    }
+
+    if (isLeapYear(year))
+        days[1] = 29;
+
+    weekday = firstDayOfYear(year);
+
+    printf("\n========== CALENDAR %d ==========\n", year);
+
+    for (month = 0; month < 12; month++) 
+{
+        printf("\n---------- %s %d ----------\n", months[month], year);
+        printf(" Sun Mon Tue Wed Thu Fri Sat\n");
+
+        
+        for (day = 0; day < weekday; day++)
+            printf("    ");
+
+        for (day = 1; day <= days[month]; day++)
+{
+            printf("%4d", day);
+            if (++weekday == 7)
+{
+                weekday = 0;
+                printf("\n");
+            }
+        }
+
+        if (weekday != 0)
+            printf("\n");
+    }
+
+    return 0;
+}
